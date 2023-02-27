@@ -22,6 +22,12 @@ RUN set -ex && \
     usermod -aG wheel atguigu && \
     sed -i -e '/^\%wheel/s/^/#/' -e '/^# \%wheel/s/^# //' /etc/sudoers && \
     mkdir /opt/software /opt/module && \
-    chown -R atguigu:atguigu /opt/software /opt/module
+    chown -R atguigu:atguigu /opt/software /opt/module && \
+    curl -L https://github.com/tsl0922/ttyd/releases/download/1.7.3/ttyd.x86_64 -o /bin/ttyd && \
+    chmod +x /bin/ttyd
 
-CMD [ "/sbin/init"]
+COPY entrypoint.sh /bin/entrypoint.sh
+RUN chmod +x /bin/entrypoint.sh
+
+ENTRYPOINT [ "/bin/tini", "--" ]
+CMD [ "/bin/entrypoint.sh" ]
