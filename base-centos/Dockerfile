@@ -24,4 +24,4 @@ RUN set -ex && \
     mkdir /opt/software /opt/module && \
     chown -R atguigu:atguigu /opt/software /opt/module
 
-ENTRYPOINT [ "/sbin/init"]
+CMD [ "/sbin/init"]
