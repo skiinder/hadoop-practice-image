@@ -1,0 +1,35 @@
+name: Base CentOS
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+    paths:
+      - base-centos/**
+      - .github/workflows/base-centos.yaml
+
+env:
+  REGISTRY: registry.cn-zhangjiakou.aliyuncs.com
+  NAMESPACE: atguigu-practice
+  IMAGE: base-centos
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Detect Date
+        run: echo "VERSION=$(date +%F)" >>$GITHUB_ENV
+      - name: Build Image
+        run: |
+          TAG=${VERSION}
+          docker login \
+            --username="${{ secrets.DOCKER_USERNAME }}" \
+            --password="${{ secrets.DOCKER_PASSWORD }}" \
+            ${REGISTRY}
+          cd ${IMAGE}
+          docker build . --file Dockerfile \
+            --tag ${REGISTRY}/${NAMESPACE}/${IMAGE}:${TAG} \
+            --tag ${REGISTRY}/${NAMESPACE}/${IMAGE}:latest
+          docker push ${REGISTRY}/${NAMESPACE}/${IMAGE}:${TAG}
+          docker push ${REGISTRY}/${NAMESPACE}/${IMAGE}:latest
