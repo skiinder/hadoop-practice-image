@@ -51,4 +51,4 @@ fi
 touch /root/READY
 
 # 启动ttyd
-/bin/ttyd login
+/bin/ttyd su - atguigu
