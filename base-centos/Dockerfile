@@ -13,6 +13,7 @@ RUN set -ex && \
     sed '/^Host/a\ \ \ \ \ \ \ \ StrictHostKeyChecking no' /etc/ssh/ssh_config && \
     ssh-keygen -t rsa -N '' -q -f /root/.ssh/id_rsa && \
     cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys && \
+    sed -i 's/^#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config && \
     chmod 600 /root/.ssh/authorized_keys && \
     useradd atguigu && \
     echo "root:1" | chpasswd && \
