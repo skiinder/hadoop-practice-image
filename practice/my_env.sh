@@ -1,0 +1,13 @@
+JAVA_HOME=/opt/module/java
+ZOOKEEPER_HOME=/opt/module/zookeeper
+HADOOP_HOME=/opt/module/hadoop
+HIVE_HOME=/opt/module/hive
+FLUME_HOME=/opt/module/flume
+KAFKA_HOME=/opt/module/kafka
+TEZ_HOME=/opt/module/tez
+SPARK_HOME=/opt/module/spark
+HBASE_HOME=/opt/module/hbase
+PHOENIX_HOME=/opt/module/phoenix
+DATAX_HOME=/opt/module/datax
+FLINK_HOME=/opt/module/flink
+PATH=$PATH:$JAVA_HOME/bin:$ZOOKEEPER_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$HIVE_HOME/bin:$FLUME_HOME/bin:$KAFKA_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$HBASE_HOME/bin:$HBASE_HOME/sbin:$PHOENIX_HOME/bin:$DATAX_HOME/bin:$FLINK_HOME/bin

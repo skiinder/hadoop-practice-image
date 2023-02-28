@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://hadoop102:8020</value>
+    </property>
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/opt/module/hadoop/data</value>
+    </property>
+    <property>
+        <name>hadoop.http.staticuser.user</name>
+        <value>atguigu</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.atguigu.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.atguigu.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.atguigu.users</name>
+        <value>*</value>
+    </property>
+</configuration>

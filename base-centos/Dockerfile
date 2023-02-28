@@ -10,7 +10,7 @@ RUN set -ex && \
     mv /etc/yum.repos.d/epel-testing.repo /etc/yum.repos.d/epel-testing.repo.backup && \
     curl -Lo /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo && \
     sed -i -e '/mirrors.cloud.aliyuncs.com/d' -e '/mirrors.aliyuncs.com/d' /etc/yum.repos.d/CentOS-Base.repo && \
-    sed '/^Host/a\ \ \ \ \ \ \ \ StrictHostKeyChecking no' /etc/ssh/ssh_config && \
+    sed -i '/^Host/a\ \ \ \ \ \ \ \ StrictHostKeyChecking no' /etc/ssh/ssh_config && \
     ssh-keygen -t rsa -N '' -q -f /root/.ssh/id_rsa && \
     cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys && \
     sed -i 's/^#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config && \
@@ -25,7 +25,11 @@ RUN set -ex && \
     mkdir /opt/software /opt/module && \
     chown -R atguigu:atguigu /opt/software /opt/module && \
     curl -L https://github.com/tsl0922/ttyd/releases/download/1.7.3/ttyd.x86_64 -o /bin/ttyd && \
-    chmod +x /bin/ttyd
+    chmod +x /bin/ttyd && \
+    curl -L https://gist.githubusercontent.com/skiinder/6d59f36f4cb083ad2370b834f39351e5/raw/e8958e43ceda6328ced4c808ee21270c2b3f6d0e/xcall -o /bin/xcall && \
+    chmod +x /bin/xcall && \
+    curl -L https://gist.githubusercontent.com/skiinder/6d59f36f4cb083ad2370b834f39351e5/raw/e8958e43ceda6328ced4c808ee21270c2b3f6d0e/xsync -o /bin/xsync && \
+    chmod +x /bin/xsync
 
 COPY entrypoint.sh /bin/entrypoint.sh
 RUN chmod +x /bin/entrypoint.sh
