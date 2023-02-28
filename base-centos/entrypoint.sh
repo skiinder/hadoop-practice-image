@@ -4,4 +4,4 @@
 /sbin/sshd
 
 # 启动ttyd
-/bin/ttyd -o /bin/bash
+/bin/ttyd login
