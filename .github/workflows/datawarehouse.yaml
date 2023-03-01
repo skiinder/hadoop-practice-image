@@ -36,7 +36,7 @@ jobs:
       - name: Build Image
         uses: docker/build-push-action@v4
         with:
-          context: ./datawarehouse
+          context: ./${{ env.IMAGE }}
           pull: true
           push: true
           tags: |
