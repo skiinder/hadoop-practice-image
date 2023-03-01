@@ -15,7 +15,7 @@ stop_maxwell() {
   status_maxwell
   if [ "$(pgrep -c com.zendesk.maxwell.Maxwell)" -gt 0 ]; then
     echo "停止Maxwell"
-    pgrep com.zendesk.maxwell.Maxwell | xargs -r kill -9
+    pkill -f -9 com.zendesk.maxwell.Maxwell
   else
     echo "Maxwell未在运行"
   fi
