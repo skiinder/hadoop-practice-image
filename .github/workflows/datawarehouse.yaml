@@ -38,6 +38,8 @@ jobs:
         with:
           context: ./datawarehouse
           push: true
-          tags: "${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE }}:${{ env.VERSION }},${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE }}:latest"
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE }}:${{ env.VERSION }}
+            ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
