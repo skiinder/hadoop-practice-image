@@ -1,8 +1,9 @@
 FROM centos:7
 RUN set -ex && \
     yum install -y epel-release && \
-    yum install -y sudo tini openssh-server net-tools vim psmisc pdsh nc rsync lrzsz libzstd openssl-static git iputils-ping jq libfreetype6 fonts-dejavu fontconfig langpacks-zh_CN && \
+    yum install -y sudo tini openssh-server net-tools vim psmisc pdsh nc rsync lrzsz libzstd openssl-static git iputils-ping jq libfreetype6 fonts-dejavu fontconfig glibc-common kde-l10n-Chinese && \
     yum clean all && \
+    localedef -c -f UTF-8 -i zh_CN zh_CN.UTF-8 && \
     echo 'LANG="zh_CN.UTF-8"' > /etc/locale.conf && \
     ssh-keygen -A && \
     mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup && \
@@ -30,7 +31,8 @@ RUN set -ex && \
     curl -L https://gist.githubusercontent.com/skiinder/6d59f36f4cb083ad2370b834f39351e5/raw/e8958e43ceda6328ced4c808ee21270c2b3f6d0e/xcall -o /bin/xcall && \
     chmod +x /bin/xcall && \
     curl -L https://gist.githubusercontent.com/skiinder/6d59f36f4cb083ad2370b834f39351e5/raw/e8958e43ceda6328ced4c808ee21270c2b3f6d0e/xsync -o /bin/xsync && \
-    chmod +x /bin/xsync
+    chmod +x /bin/xsync && \
+    echo 'export LANG="zh_CN.utf8"' > /etc/profile.d/language.sh
 
 COPY entrypoint.sh /bin/entrypoint.sh
 RUN chmod +x /bin/entrypoint.sh
