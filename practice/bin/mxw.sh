@@ -12,7 +12,6 @@ start_maxwell() {
 }
 
 stop_maxwell() {
-  status_maxwell
   if [ "$(pgrep -c com.zendesk.maxwell.Maxwell)" -gt 0 ]; then
     echo "停止Maxwell"
     pkill -f -9 com.zendesk.maxwell.Maxwell

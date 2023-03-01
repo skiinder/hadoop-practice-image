@@ -32,8 +32,8 @@ case $1 in
   ;;
 "init")
   /home/atguigu/bin/mxw.sh stop
-  mysql -uroot -p000000 -hhadoop101 "drop database if exists maxwell;"
-  mysql -uroot -p000000 -hhadoop101 "create database maxwell;"
+  mysql -uroot -p000000 -hhadoop101 -e"drop database if exists maxwell;"
+  mysql -uroot -p000000 -hhadoop101 -e"create database maxwell;"
   ((INIT_DAY_COUNT--))
   day="$(date -d "$INIT_DAY -$INIT_DAY_COUNT days" +%F)"
   set_application_yaml 'mock.clear.busi' '1'

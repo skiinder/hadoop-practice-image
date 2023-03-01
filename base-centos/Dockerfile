@@ -1,8 +1,9 @@
 FROM centos:7
 RUN set -ex && \
     yum install -y epel-release && \
-    yum install -y sudo tini openssh-server net-tools vim psmisc pdsh nc rsync lrzsz libzstd openssl-static git iputils-ping jq libfreetype6 fonts-dejavu fontconfig && \
+    yum install -y sudo tini openssh-server net-tools vim psmisc pdsh nc rsync lrzsz libzstd openssl-static git iputils-ping jq libfreetype6 fonts-dejavu fontconfig langpacks-zh_CN && \
     yum clean all && \
+    echo 'LANG="zh_CN.UTF-8"' > /etc/locale.conf && \
     ssh-keygen -A && \
     mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup && \
     curl -Lo /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo && \
