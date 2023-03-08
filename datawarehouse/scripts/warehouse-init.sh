@@ -28,11 +28,12 @@ hadoop fs -put /opt/module/table-create-sql/date_info.txt /warehouse/gmall/tmp/t
 hive -e "insert into gmall.dim_date select * from gmall.tmp_dim_date_info;"
 cd /opt/module/datax-config-generator
 java -jar datax-config-generator-1.0-SNAPSHOT-jar-with-dependencies.jar
-mock.sh init
 f1.sh start
 f2.sh start
 f3.sh start
+mock.sh init
 
+mysql_to_kafka_inc_init.sh all
 mysql_to_hdfs_full.sh all 2022-06-08
 hdfs_to_ods_log.sh 2022-06-08
 hdfs_to_ods_db.sh all 2022-06-08

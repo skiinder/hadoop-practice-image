@@ -30,3 +30,7 @@ jobs:
     needs: flume
     uses: ./.github/workflows/kafka.yaml
     secrets: inherit
+  datawarehouse:
+    needs: kafka
+    uses: ./.github/workflows/datawarehouse.yaml
+    secrets: inherit
