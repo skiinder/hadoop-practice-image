@@ -1,6 +1,5 @@
 name: Java
 on:
-  workflow_dispatch:
   workflow_call:
   push:
     branches: [ master ]
@@ -39,6 +38,3 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      - name: Call Hadoop Builder
-        if: ${{ github.event_name == 'workflow_dispatch' }}
-        uses: ./.github/workflows/hadoop.yaml

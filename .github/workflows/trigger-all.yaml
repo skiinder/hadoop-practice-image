@@ -1,0 +1,12 @@
+name: Trigger All
+on:
+  workflow_dispatch:
+
+jobs:
+  base-centos:
+    uses: ./.github/workflows/base-centos.yaml
+    secrets: inherit
+  java:
+    needs: base-centos
+    uses: ./.github/workflows/java.yaml
+    secrets: inherit
