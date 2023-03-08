@@ -3,15 +3,16 @@ RUN set -ex && \
     yum install -y epel-release && \
     yum install -y sudo tini openssh-server net-tools vim psmisc pdsh nc rsync lrzsz libzstd openssl-static git iputils-ping jq libfreetype6 fonts-dejavu fontconfig glibc-common kde-l10n-Chinese && \
     yum clean all && \
-    localedef -c -f UTF-8 -i zh_CN zh_CN.UTF-8 && \
-    echo 'LANG="zh_CN.UTF-8"' > /etc/locale.conf && \
-    ssh-keygen -A && \
     mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup && \
     curl -Lo /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo && \
     mv /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.backup && \
     mv /etc/yum.repos.d/epel-testing.repo /etc/yum.repos.d/epel-testing.repo.backup && \
     curl -Lo /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo && \
     sed -i -e '/mirrors.cloud.aliyuncs.com/d' -e '/mirrors.aliyuncs.com/d' /etc/yum.repos.d/CentOS-Base.repo && \
+    localedef -c -f UTF-8 -i zh_CN zh_CN.UTF-8 && \
+    echo 'LANG="zh_CN.UTF-8"' > /etc/locale.conf && \
+    echo 'export LANG="zh_CN.utf8"' > /etc/profile.d/language.sh && \
+    ssh-keygen -A && \
     sed -i '/^Host/a\ \ \ \ \ \ \ \ StrictHostKeyChecking no' /etc/ssh/ssh_config && \
     ssh-keygen -t rsa -N '' -q -f /root/.ssh/id_rsa && \
     cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys && \
@@ -32,10 +33,9 @@ RUN set -ex && \
     chmod +x /bin/xcall && \
     curl -L https://gist.githubusercontent.com/skiinder/6d59f36f4cb083ad2370b834f39351e5/raw/e8958e43ceda6328ced4c808ee21270c2b3f6d0e/xsync -o /bin/xsync && \
     chmod +x /bin/xsync && \
-    echo 'export LANG="zh_CN.utf8"' > /etc/profile.d/language.sh
+    mkdir -p /root/.init
 
-COPY entrypoint.sh /bin/entrypoint.sh
-RUN chmod +x /bin/entrypoint.sh
-
+COPY  --chmod=755 entrypoint.sh /root/entrypoint.sh
+EXPOSE 22 7681
 ENTRYPOINT [ "/bin/tini", "--" ]
-CMD [ "/bin/entrypoint.sh" ]
+CMD [ "/root/entrypoint.sh" ]
