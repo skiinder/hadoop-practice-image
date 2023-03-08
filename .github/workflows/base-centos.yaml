@@ -1,11 +1,11 @@
 name: Base CentOS
 on:
   workflow_dispatch:
+  workflow_call:
   push:
     branches: [ master ]
     paths:
       - base-centos/**
-      - .github/workflows/base-centos.yaml
 
 env:
   REGISTRY: registry.cn-zhangjiakou.aliyuncs.com
@@ -39,3 +39,7 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ env.IMAGE }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      - name: Call Java Builder
+        if: ${{ github.event == 'workflow_dispatch' }}
+        uses: ./.github/workflows/java.yaml
+        secrets: inherit

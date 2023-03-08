@@ -1,16 +1,11 @@
 name: Data Warehouse
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows:
-      - Practice
-    types:
-      - completed
+  workflow_call:
   push:
     branches: [ master ]
     paths:
       - datawarehouse/**
-      - .github/workflows/datawarehouse.yaml
 
 env:
   REGISTRY: registry.cn-zhangjiakou.aliyuncs.com
