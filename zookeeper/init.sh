@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 case "$(hostname)" in
 "hadoop102")
   su - atguigu -c "echo 2 >/opt/module/zookeeper/zkData/myid"
