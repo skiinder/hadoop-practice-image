@@ -10,5 +10,5 @@ RUN chown -R atguigu:atguigu /opt/module
 FROM registry.cn-zhangjiakou.aliyuncs.com/atguigu-practice/java
 COPY --from=source --chown=atguigu:atguigu /opt/module/zookeeper /opt/module/zookeeper
 COPY env.sh /etc/profile.d/zookeeper.sh
-COPY init.sh /root/.init/zookeeper.sh
+COPY init.sh /root/.init/01_zookeeper.sh
 COPY --chown=atguigu:atguigu --chmod=755 zk.sh /home/atguigu/bin/zk.sh

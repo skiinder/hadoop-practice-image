@@ -10,5 +10,5 @@ RUN chown -R atguigu:atguigu /opt/module
 FROM registry.cn-zhangjiakou.aliyuncs.com/atguigu-practice/zookeeper
 COPY --from=source --chown=atguigu:atguigu /opt/module/hadoop /opt/module/hadoop
 COPY env.sh /etc/profile.d/hadoop.sh
-COPY init.sh /root/.init/hadoop.sh
+COPY init.sh /root/.init/02_hadoop.sh
 COPY --chown=atguigu:atguigu --chmod=755 hdp.sh /home/atguigu/bin/hdp.sh
