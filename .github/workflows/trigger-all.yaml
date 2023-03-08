@@ -26,3 +26,7 @@ jobs:
     needs: hive
     uses: ./.github/workflows/flume.yaml
     secrets: inherit
+  kafka:
+    needs: flume
+    uses: ./.github/workflows/kafka.yaml
+    secrets: inherit
