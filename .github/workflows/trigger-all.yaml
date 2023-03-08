@@ -10,3 +10,7 @@ jobs:
     needs: base-centos
     uses: ./.github/workflows/java.yaml
     secrets: inherit
+  zookeeper:
+    needs: java
+    uses: ./.github/workflows/zookeeper.yaml
+    secrets: inherit
