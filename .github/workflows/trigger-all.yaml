@@ -22,3 +22,7 @@ jobs:
     needs: hadoop
     uses: ./.github/workflows/hive.yaml
     secrets: inherit
+  flume:
+    needs: hive
+    uses: ./.github/workflows/flume.yaml
+    secrets: inherit
