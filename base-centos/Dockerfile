@@ -2,6 +2,13 @@ FROM centos:7
 RUN set -ex && \
     yum install -y epel-release && \
     yum install -y sudo tini openssh-server net-tools vim psmisc pdsh nc rsync lrzsz libzstd openssl-static git iputils-ping jq libfreetype6 fonts-dejavu fontconfig glibc-common kde-l10n-Chinese && \
+    curl -LO https://downloads.mysql.com/archives/get/p/23/file/mysql-community-client-8.0.31-1.el7.x86_64.rpm && \
+    curl -LO https://downloads.mysql.com/archives/get/p/23/file/mysql-community-client-plugins-8.0.31-1.el7.x86_64.rpm && \
+    curl -LO https://downloads.mysql.com/archives/get/p/23/file/mysql-community-common-8.0.31-1.el7.x86_64.rpm && \
+    curl -LO https://downloads.mysql.com/archives/get/p/23/file/mysql-community-libs-8.0.31-1.el7.x86_64.rpm && \
+    curl -LO https://downloads.mysql.com/archives/get/p/23/file/mysql-community-libs-compat-8.0.31-1.el7.x86_64.rpm && \
+    yum install -y *.rpm && \
+    rm -rf *.rpm && \
     yum clean all && \
     mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup && \
     curl -Lo /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo && \
@@ -21,7 +28,7 @@ RUN set -ex && \
     useradd atguigu && \
     echo "root:1" | chpasswd && \
     echo "atguigu:1" | chpasswd && \
-    su - atguigu -c "ssh-keygen -t rsa -N '' -q -f /home/atguigu/.ssh/id_rsa && cat .ssh/id_rsa.pub >> .ssh/authorized_keys" && \
+    su - atguigu -c "ssh-keygen -t rsa -N '' -q -f /home/atguigu/.ssh/id_rsa && cat .ssh/id_rsa.pub >> .ssh/authorized_keys; mkdir /home/atguigu/bin" && \
     chmod 600 /home/atguigu/.ssh/authorized_keys && \
     usermod -aG wheel atguigu && \
     sed -i -e '/^\%wheel/s/^/#/' -e '/^# \%wheel/s/^# //' /etc/sudoers && \
