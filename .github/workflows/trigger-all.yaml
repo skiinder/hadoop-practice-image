@@ -18,3 +18,7 @@ jobs:
     needs: zookeeper
     uses: ./.github/workflows/hadoop.yaml
     secrets: inherit
+  hive:
+    needs: hadoop
+    uses: ./.github/workflows/hive.yaml
+    secrets: inherit
