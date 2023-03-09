@@ -34,3 +34,7 @@ jobs:
     needs: kafka
     uses: ./.github/workflows/datawarehouse.yaml
     secrets: inherit
+  hadoop-practice-01:
+    needs: hadoop
+    uses: ./.github/workflows/hadoop-practice-01.yaml
+    secrets: inherit
