@@ -50,3 +50,7 @@ jobs:
     needs: hadoop
     uses: ./.github/workflows/hadoop-practice-04.yaml
     secrets: inherit
+  hadoop-practice-05:
+    needs: hadoop
+    uses: ./.github/workflows/hadoop-practice-05.yaml
+    secrets: inherit
