@@ -54,3 +54,7 @@ jobs:
     needs: hadoop
     uses: ./.github/workflows/hadoop-practice-05.yaml
     secrets: inherit
+  linux-practice-01:
+    needs: datawarehouse
+    uses: ./.github/workflows/linux-practice-01.yaml
+    secrets: inherit
