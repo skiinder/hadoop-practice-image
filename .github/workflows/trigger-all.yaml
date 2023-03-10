@@ -58,3 +58,7 @@ jobs:
     needs: datawarehouse
     uses: ./.github/workflows/linux-practice-01.yaml
     secrets: inherit
+  linux-practice-02:
+    needs: base-centos
+    uses: ./.github/workflows/linux-practice-02.yaml
+    secrets: inherit
