@@ -62,3 +62,7 @@ jobs:
     needs: base-centos
     uses: ./.github/workflows/linux-practice-02.yaml
     secrets: inherit
+  flume-practice-01:
+    needs: flume
+    uses: ./.github/workflows/flume-practice-01.yaml
+    secrets: inherit
