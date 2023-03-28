@@ -66,3 +66,7 @@ jobs:
     needs: flume
     uses: ./.github/workflows/flume-practice-01.yaml
     secrets: inherit
+  hadoop-practice-06:
+    needs: hadoop
+    uses: ./.github/workflows/hadoop-practice-06.yaml
+    secrets: inherit
