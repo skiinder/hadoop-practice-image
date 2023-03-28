@@ -58,6 +58,10 @@ jobs:
     needs: datawarehouse
     uses: ./.github/workflows/linux-practice-01.yaml
     secrets: inherit
+  hadoop-practice-06:
+    needs: hadoop
+    uses: ./.github/workflows/hadoop-practice-06.yaml
+    secrets: inherit
   linux-practice-02:
     needs: base-centos
     uses: ./.github/workflows/linux-practice-02.yaml
@@ -66,7 +70,7 @@ jobs:
     needs: flume
     uses: ./.github/workflows/flume-practice-01.yaml
     secrets: inherit
-  hadoop-practice-06:
-    needs: hadoop
-    uses: ./.github/workflows/hadoop-practice-06.yaml
+  flume-practice-02:
+    needs: flume
+    uses: ./.github/workflows/flume-practice-02.yaml
     secrets: inherit
